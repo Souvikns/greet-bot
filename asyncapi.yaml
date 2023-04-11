@@ -1,0 +1,30 @@
+asyncapi: 2.1.0
+info:
+  title: Greet Bot
+  version: 0.1.0
+servers:
+  websockets:
+    url: ws://0.0.0.0:3000
+    protocol: ws
+channels:
+  greet:
+    publish:
+      operationId: onGreet
+      message:
+        $ref: '#/components/messages/time'
+    subscribe:
+      message:
+        $ref: '#/components/messages/greet'
+components:
+  messages:
+    time:
+      payload:
+        type: object
+        properties:
+          currentTime:
+            type: number
+          name:
+            type: string
+    greet:
+      payload:
+        type: string
